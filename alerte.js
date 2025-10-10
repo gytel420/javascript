@@ -93,3 +93,8 @@
 //  for(let i=10; i>0;--i){
 //    console.log ("liczba:"+i)
 //  }
+
+function subtraction (n1 , n2 ){
+    return ( n1-n2)
+    
+}
