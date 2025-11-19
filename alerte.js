@@ -94,7 +94,131 @@
 //    console.log ("liczba:"+i)
 //  }
 
-function subtraction (n1 , n2 ){
-    return ( n1-n2)
+// function subtraction (n1 , n2 ){
+//     return ( n1-n2)
     
-}
+// let lista=document.querySelectorAll('a');
+// console.log(lista)
+// console.log('Pierwszy : '+lista[0].getAttribute('href'))
+// console.log('Drugi'+lista[1]getAttribute('href'))
+
+
+// let a =document.querySelector('a')
+// a.setAttribute('href', 'https://kursjs.pl')
+
+
+// <body>
+// <h1> Tworzenie nowego albumu </h1>
+// </body>
+// <script>
+//     // Tworzenie nowego elementu
+//     let newElement = document.createElement("p");
+//     //dodanie tekstu do nowego elementu
+//     newElement.textContent = "To jest nowy paragraf utworzony"
+//     //dodanie nowego elementu do ciała dokumentu
+//     document.body.appendChild(newElement);
+// </script>
+
+
+
+
+
+// ZADANIE : Przy użyciu skryptu javascript utwórz akapit zawierający swoje imię
+// const akapit = document.createElement('p');
+// akapit.textContent = 'Kasia';
+// document.body.appendChild(akapit);
+
+
+// // let newElement = document.createElement("p")        // tworzenie nowego elementu
+// // newElement.textContent = "to jest nowy paragraf"
+// // document.body.appendChild(newElement)
+
+
+// // let h2 = document.querySelector("h2"); // zmiana nagluwka czy tam elementu
+// //  h2.innerHTML = "to jest to co zmienilem ";
+
+
+// //  const naglowek = document.createElement("div");
+// // naglowek.textContent = "to jest nagluwek";
+// // document.body.appendChild(naglowek);
+
+
+// Wstawianie nowego elementu przed innym :
+
+ 
+// let akapit =document.createElement(p);
+// let content-document.createTextNode("nowy akapit");
+// akapit.appendchild(content);
+// let position=document.querySelector('#div1')
+// let before-document.querySelector('#p1')
+// position.insertBefore( akapit, before);
+
+// Usuwanie Elementów :
+
+// let parent=document.querySelector('#div1')
+// let child=document.querySelector('#p1');
+// parent.removeChild( child);
+
+
+// podmiana elementow html:
+// let akapit-document.createElement("p");
+// let contet-document.createTextNode("Nowy akapit");
+// akapit.appendChild(content);
+// let parent-document.querySelector("#div1");
+// let child=document.querySelector("#p1");
+// parent.replaceChild(akapit,child);
+ 
+// dodanie stylu do elementu
+// <style> p{ border:solid1px red; }</style>
+
+// const box = document.querySelector('#box');
+// const akapit = document.createElement('p')
+// akapit.classList.add('p');
+// akapit.innerHTML = "to jest akapit"
+// box.appendChild(akapit);
+
+
+
+// Formatowanie tabel
+
+// 1.Obramowanie
+// table,th,td{
+// border: 1px solid red;
+// border-collapse:collapse;
+// }
+
+// 2.rozmiar:
+
+// <body>
+//     <h1>Tworzenie nowego elementu HTML</h1>
+//     </body>
+//     <script>
+//         // Tworzenie nowego elementu paragrafu
+//         let newElement = document.createElement("p");
+//         //Dodanie tekstu do nowego elementu
+//         newElement.textContent = "To jest nowy paragraf";
+//         // Dodanie nowego elementu do ciała dokumentu
+//         document.body.appendChild(newElement);
+//     </script>
+
+
+
+// # OBSLUGA ZDARZEN
+
+
+// Zdarzenie jest to wystapienie jakiejs zmiany przy przegladaniu strony interneteowej 
+
+
+
+// przypisanie zmiany wlasciwosci do zdarzenia 
+//  <h1 onclick="this.innterHTML='nowy tekst'" >Kliknij w tekst</h1>
+
+// przypisanie funkcji oblsugi zdarzenia do elementu html
+// <h1>onclick="changeText(this);"
+//     kliknij w tekst
+// </h1>
+// <script>
+//     function changeText(od){
+//         id.innterHTML="nowy tekst"
+//     }
+// </script>
