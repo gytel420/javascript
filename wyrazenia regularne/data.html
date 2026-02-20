@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Wyszukiwanie daty</p>
+    <script>
+        let text="Sucha beskidzka 29.12.2025"
+        var reg_date=/([0123]?\d)[-\ \/\.]([012]?\d)[-\ \/\.](\d{4})/
+        let position =text.search (reg_date)
+        document.write('znaleziono na pozycji' +position + "<br>")
+        document.write( text.slice(position))
+    </script>
+</body>
+</html>
