@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Samochud </title>
+<style>
+  body { margin: 0; background: #222; }
+  canvas { display: block; margin: auto; background: #eee; }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let wheelAngle = 0;
+
+function drawCar() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // droga
+  ctx.fillStyle = "#444";
+  ctx.fillRect(0, 250, 800, 150);
+
+  ctx.setLineDash([20, 15]);
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(0, 325);
+  ctx.lineTo(800, 325);
+  ctx.stroke();
+
+  ctx.setLineDash([]);
+
+  // karoseria
+  ctx.fillStyle = "red";
+  ctx.fillRect(250, 180, 300, 70);
+
+  // dah
+  ctx.beginPath();
+  ctx.moveTo(300, 180);
+  ctx.quadraticCurveTo(400, 120, 500, 180);
+  ctx.fill();
+
+  // okno
+  ctx.fillStyle = "lightblue";
+  ctx.fillRect(330, 150, 60, 30);
+  ctx.fillRect(410, 150, 60, 30);
+
+  //  kolo krenci
+  function drawWheel(x, y) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(wheelAngle);
+
+    // opona
+    ctx.beginPath();
+    ctx.arc(0, 0, 40, 0, Math.PI * 2);
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    // fela
+    ctx.beginPath();
+    ctx.arc(0, 0, 20, 0, Math.PI * 2);
+    ctx.fillStyle = "gray";
+    ctx.fill();
+
+    // szpryha
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 3;
+
+    for (let i = 0; i < 4; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(30, 0);
+      ctx.stroke();
+      ctx.rotate(Math.PI / 2);
+    }
+
+    ctx.restore();
+  }
+
+
+  drawWheel(320, 250);
+  drawWheel(480, 250);
+
+
+  ctx.fillStyle = "black";
+  ctx.font = "20px Arial";
+  ctx.fillText("Samochud bruuuuuuuuuuuuuuuuuuuuuuum", 20, 30);
+}
+
+function animate() {
+  drawCar();
+  wheelAngle += 0.1; 
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>Samochód i rowerzysta</title>
+<style>
+  body { margin: 0; background: #222; }
+  canvas { display: block; margin: auto; background: #87CEEB; }
+</style>
+</head>
+<body>
+
+<canvas id="canvas" width="800" height="400"></canvas>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+let wheelAngle = 0;
+
+// CHMURY
+let clouds = [
+  {x: 100, y: 80, size: 30},
+  {x: 300, y: 60, size: 40},
+  {x: 600, y: 90, size: 35}
+];
+
+// ROWERZYSTA
+let biker = {
+  x: 850,
+  y: 250,
+  rotation: 0,
+  hit: false,
+  velocityY: 0
+};
+
+function drawCloud(cloud) {
+  ctx.fillStyle = "white";
+  ctx.beginPath();
+  ctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
+  ctx.arc(cloud.x + cloud.size, cloud.y, cloud.size * 0.8, 0, Math.PI * 2);
+  ctx.arc(cloud.x - cloud.size, cloud.y, cloud.size * 0.8, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+function updateClouds() {
+  clouds.forEach(c => {
+    c.x -= 1.5;
+    if (c.x < -100) {
+      c.x = canvas.width + 100;
+      c.y = 50 + Math.random() * 80;
+    }
+  });
+}
+
+function drawBiker() {
+  ctx.save();
+  ctx.translate(biker.x, biker.y);
+  ctx.rotate(biker.rotation);
+
+  // KOŁA
+  ctx.beginPath();
+  ctx.arc(-20, 0, 15, 0, Math.PI * 2);
+  ctx.arc(20, 0, 15, 0, Math.PI * 2);
+  ctx.stroke();
+
+  // RAMA
+  ctx.beginPath();
+  ctx.moveTo(-20, 0);
+  ctx.lineTo(0, -20);
+  ctx.lineTo(20, 0);
+  ctx.stroke();
+
+  // CIAŁO
+  ctx.beginPath();
+  ctx.moveTo(0, -20);
+  ctx.lineTo(0, -40);
+  ctx.stroke();
+
+  ctx.restore();
+}
+
+function updateBiker() {
+  if (!biker.hit) {
+    biker.x -= 2;
+
+    // KOLIZJA
+    if (biker.x < 500) {
+      biker.hit = true;
+      biker.velocityY = -8;
+    }
+  } else {
+    // FIKOŁEK
+    biker.rotation += 0.2;
+    biker.y += biker.velocityY;
+    biker.velocityY += 0.4; // grawitacja
+  }
+}
+
+function drawCar() {
+  // DROGA
+  ctx.fillStyle = "#444";
+  ctx.fillRect(0, 250, 800, 150);
+
+  ctx.setLineDash([20, 15]);
+  ctx.strokeStyle = "white";
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.moveTo(0, 325);
+  ctx.lineTo(800, 325);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // KAROSERIA
+  ctx.fillStyle = "red";
+  ctx.fillRect(250, 180, 300, 70);
+
+  // DACH
+  ctx.beginPath();
+  ctx.moveTo(300, 180);
+  ctx.quadraticCurveTo(400, 120, 500, 180);
+  ctx.fill();
+
+  // KOŁA
+  function wheel(x, y) {
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.rotate(wheelAngle);
+
+    ctx.beginPath();
+    ctx.arc(0, 0, 40, 0, Math.PI * 2);
+    ctx.fillStyle = "black";
+    ctx.fill();
+
+    ctx.strokeStyle = "white";
+    for (let i = 0; i < 4; i++) {
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(30, 0);
+      ctx.stroke();
+      ctx.rotate(Math.PI / 2);
+    }
+
+    ctx.restore();
+  }
+
+  wheel(320, 250);
+  wheel(480, 250);
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  updateClouds();
+  updateBiker();
+
+  clouds.forEach(drawCloud);
+  drawCar();
+  drawBiker();
+
+  wheelAngle += 0.1;
+
+  requestAnimationFrame(animate);
+}
+
+animate();
+</script>
+
+</body>
+</html>
