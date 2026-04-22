@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Siblings h2 (inna metoda jQuery)</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <style>
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Nagłówek H2 (nie zmieniamy)</h2>
+    <p>Paragraf 1</p>
+    <p>Paragraf 2</p>
+    <span>Span</span>
+  </div>
+
+  <div class="container">
+    <h2>Drugi H2 (też nie zmieniamy)</h2>
+    <p>Inny paragraf</p>
+    <div>Jakiś div</div>
+  </div>
+
+  <script>
+    $(function() {
+      $('h2').parent().each(function() {
+        $(this).children().not('h2').addClass('red');
+      });
+    });
+  </script>
+
+</body>
+</html>
